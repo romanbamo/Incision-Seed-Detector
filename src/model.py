@@ -24,7 +24,7 @@ class IncisionSeedModel(nn.Module):
 
     def forward(self, x):
         x = self.features(x) 
-        x = x.mean([2, 3]) # Global Average Pooling
+        x = x.mean([2, 3]) # Global Average Pooling. Equivalent to AdaptiveAvgPool2d(1) and Flatten
         x = self.fc(x)
         return x
 
