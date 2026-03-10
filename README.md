@@ -48,3 +48,11 @@ The model outputs the coordinates which are then de-normalized to the original i
 2. Install dependences
    ```bash
    pip install -r requirements.txt
+
+3. Pre-trainded weights can be download from:
+[EfficientNet-B1-Pretrained-Weight](https://drive.google.com/file/d/1Z1YE09sp-ZmbWWWcLTJrEoBXPn-jY-MH/view?usp=drive_link)
+
+or installed from:
+```bash
+pip install gdown
+gdown 1Z1YE09sp-ZmbWWWcLTJrEoBXPn-jY-MH -O models/efficientnet_b1_weights.pth
