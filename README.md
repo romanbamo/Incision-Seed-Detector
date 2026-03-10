@@ -2,8 +2,6 @@
 
 This repository contains a Deep Learning model based on **EfficientNet-B1** designed to automatically detect the starting "seed" (x, y coordinates) for a **Region Growing** algorithm in surgical incision images.
 
-
-
 ## Project Overview
 The goal is to automate the initialization of segmentation algorithms. Instead of manually picking a starting point, this CNN predicts the most likely center of a surgical incision to begin the region-growing process.
 
@@ -11,6 +9,23 @@ The goal is to automate the initialization of segmentation algorithms. Instead o
 - **Input:** RGB Image (resized to 240x240).
 - **Output:** Normalized (x, y) coordinates of the incision seed.
 - **Framework:** PyTorch.
+
+### Training Strategy
+
+The model follows a two-step training process:
+
+- Phase 1 (Frozen Backbone): Only the final fully connected layer is trained using a high learning rate (1e-3).
+
+- Phase 2 (Fine-Tuning): The entire network is unfrozen and trained with a lower learning rate (1e-5) to refine the weights for surgical feature extraction.
+
+### Results
+
+The model outputs the coordinates which are then de-normalized to the original image size.
+
+- Red Dot 🔴: Predicted Seed.
+
+- Green Dot 🟢 : Ground Truth.
+
 
 ## Repository Structure
 * `src/model.py`: Model architecture definition.
@@ -29,3 +44,7 @@ The goal is to automate the initialization of segmentation algorithms. Instead o
    ```bash
    git clone [https://github.com/romanbamo/Incision-Seed-Detector.git](https://github.com/romanbamo/Incision-Seed-Detector.git)
    cd Incision-Seed-Detector
+
+2. Install dependences
+   ```bash
+   pip install -r requirements.txt
